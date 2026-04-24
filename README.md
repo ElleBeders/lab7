@@ -1,3 +1,4 @@
+<img width="618" height="580" alt="1" src="https://github.com/user-attachments/assets/d13e92d4-f181-4969-be5f-8208c5135486" />
 # Панова Анастасия БАС-2 Лабораторная №3
 
 # Задание 1
@@ -15,6 +16,9 @@ hj
 ### Тестирование
 
 Скриншоты результата работы программы
+
+<img width="618" height="580" alt="1" src="https://github.com/user-attachments/assets/2e92c6cf-212e-4300-b904-13b43826ecd1" />
+<img width="625" height="904" alt="11" src="https://github.com/user-attachments/assets/500b4b32-90f1-4227-ad51-60c39aea1999" />
 
 
 
@@ -34,6 +38,9 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="636" height="223" alt="2" src="https://github.com/user-attachments/assets/7a5a1409-e50e-46b8-b6f8-ea548d2770a3" />
+<img width="612" height="247" alt="22" src="https://github.com/user-attachments/assets/05a069ee-0de0-4a6f-898a-c46f5c9e0e55" />
+
 
 
 
@@ -52,6 +59,8 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="639" height="404" alt="3" src="https://github.com/user-attachments/assets/4b14bf37-3e3e-4dba-9296-a7949a1195cd" />
+<img width="594" height="402" alt="33" src="https://github.com/user-attachments/assets/caf55b96-36b3-4d49-8cb8-84b8f65932a9" />
 
 
 
@@ -70,6 +79,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="619" height="272" alt="4" src="https://github.com/user-attachments/assets/e2ceb75c-bc3e-490c-952c-276871956d2f" />
 
 
 
@@ -88,6 +98,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="985" height="547" alt="5" src="https://github.com/user-attachments/assets/64537f09-f4a9-4466-8051-50f49ea43fc4" />
 
 
 
@@ -106,6 +117,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="409" height="370" alt="6" src="https://github.com/user-attachments/assets/dc31aac4-ae06-4245-9608-614976cbd6b3" />
 
 
 
@@ -124,6 +136,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="466" height="413" alt="7" src="https://github.com/user-attachments/assets/3b418fa3-b5d4-4bae-8a2c-25c23bbb1ff0" />
 
 
 
@@ -142,6 +155,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="690" height="269" alt="8" src="https://github.com/user-attachments/assets/faf770a8-515c-422d-9457-d07a5bdad142" />
 
 
 
@@ -160,6 +174,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="643" height="381" alt="9" src="https://github.com/user-attachments/assets/0b3e3390-9dc5-4f60-ace2-9195a8c94af0" />
 
 
 
@@ -194,6 +209,7 @@ hj
 
 Скриншоты результата работы программы
 
+<img width="430" height="648" alt="10" src="https://github.com/user-attachments/assets/62d34b8b-1839-4885-a9e7-bb329a8ae72c" />
 
 
 
