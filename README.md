@@ -1,4 +1,3 @@
-<img width="618" height="580" alt="1" src="https://github.com/user-attachments/assets/d13e92d4-f181-4969-be5f-8208c5135486" />
 # Панова Анастасия БАС-2 Лабораторная №3
 
 # Задание 1
