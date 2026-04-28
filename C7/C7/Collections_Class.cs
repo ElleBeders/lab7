@@ -1,22 +1,20 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Xml.Serialization;
-
 public static class Collections_Class
 {
     // ========== ЗАДАНИЕ 6 ==========
-    public static List<int> Task6(List<int> list, int e)
+    public static List<T> Task6<T>(List<T> list, T e)
     {
-        // Создаём копию списка, чтобы не изменять оригинал
-        List<int> result = new List<int>(list);
+        List<T> result = new List<T>(list);
         for (int i = result.Count - 1; i >= 0; i--)
         {
-            if (result[i] == e)
+            if (Equals(result[i], e))
             {
-                if (i < result.Count - 1)
+                if (i + 1 < result.Count)
                 {
-                    if (result[i + 1] != e)
+                    if (!Equals(result[i + 1], e))
                     {
                         result.RemoveAt(i + 1);
                     }
@@ -26,24 +24,25 @@ public static class Collections_Class
         return result;
     }
     // Заполнение
-    public static List<int> FillList()
+    public static List<char> FillListForTask6()
     {
         Random rnd = new Random();
-        List<int> list = new List<int>();
+        List<char> list = new List<char>();
+        char[] allowedChars = { 'a', 'e', 'i', 'o', 'u', '1', '2', '3', '4', '5' };
         for (int i = 0; i < 15; i++)
         {
-            list.Add(rnd.Next(1, 11));
+            list.Add(allowedChars[rnd.Next(allowedChars.Length)]);
         }
         return list;
     }
     // ========== ЗАДАНИЕ 7 ==========
-    public static LinkedList<int> Task7(LinkedList<int> list)
+    public static LinkedList<T> Task7<T>(LinkedList<T> list)
     {
-        LinkedList<int> result = new LinkedList<int>();
-        LinkedListNode<int> current = list.First;
+        LinkedList<T> result = new LinkedList<T>();
+        LinkedListNode<T> current = list.First;
         for (int i = 0; i < list.Count; i++)
         {
-            LinkedListNode<int> next;
+            LinkedListNode<T> next;
             if (current.Next != null)
             {
                 next = current.Next;
@@ -52,7 +51,7 @@ public static class Collections_Class
             {
                 next = list.First;  
             }
-            if (current.Value == next.Value)
+            if (Equals(current.Value, next.Value))
             {
                 result.AddLast(current.Value);
             }
@@ -123,7 +122,7 @@ public static class Collections_Class
             letterCount[consonants[i]] = 0;
         }
         string text = File.ReadAllText(filePath);
-        string[] separators = { " ", ".", ",", "!", "?", "\n", "\r", "\t" };
+        string[] separators = { " ", ".", ",", "!", "?", "\n", "\r", "\t", ";", ":" };
         string[] words = text.Split(separators, StringSplitOptions.RemoveEmptyEntries);
         for (int i = 0; i < words.Length; i++)
         {
@@ -132,15 +131,15 @@ public static class Collections_Class
         for (int i = 0; i < consonants.Length; i++)
         {
             char c = consonants[i];
-            HashSet<int> wordIndices = new HashSet<int>();
+            HashSet<string> wordsWithLetter = new HashSet<string>();
             for (int j = 0; j < words.Length; j++)
             {
                 if (words[j].IndexOf(c) != -1)
                 {
-                    wordIndices.Add(j);
+                    wordsWithLetter.Add(words[j]);  
                 }
             }
-            letterCount[c] = wordIndices.Count;
+            letterCount[c] = wordsWithLetter.Count;
         }
         HashSet<char> result = new HashSet<char>();
         for (int i = 0; i < consonants.Length; i++)
@@ -181,46 +180,57 @@ public static class Collections_Class
         }
     }
     // ========== ЗАДАНИЕ 10 =========
-    public static SortedDictionary<string, string> Task10(
-    out List<KeyValuePair<string, string>> applicants,
-    out int[] scores1,
-    out int[] scores2)
+    public static SortedDictionary<string, string> Task10(string filePath)
     {
-        applicants = GenerateApplicantsData(out scores1, out scores2);
+        InputOutput.Cheking(filePath);
         SortedDictionary<string, string> notAdmitted = new SortedDictionary<string, string>();
-        for (int i = 0; i < applicants.Count; i++)
+        using (StreamReader reader = new StreamReader(filePath))
         {
-            if (scores1[i] < 30 || scores2[i] < 30)
+            string line;
+            while ((line = reader.ReadLine()) != null)
             {
-                string lastName = applicants[i].Key;
-                string fullName = applicants[i].Value;
-                if (!notAdmitted.ContainsKey(lastName))
+                if (string.IsNullOrWhiteSpace(line))
                 {
-                    notAdmitted.Add(lastName, fullName);
+                    continue;
+                }
+                string[] parts = line.Split(' ');
+                if (parts.Length < 4)
+                {
+                    continue;
+                }
+                string lastName = parts[0];
+                string firstName = parts[1];
+                string fullName = lastName + " " + firstName;
+                int score1 = int.Parse(parts[2]);
+                int score2 = int.Parse(parts[3]);
+                if (score1 < 30 || score2 < 30)
+                {
+                    if (!notAdmitted.ContainsKey(lastName))
+                    {
+                        notAdmitted.Add(lastName, fullName);
+                    }
                 }
             }
         }
         return notAdmitted;
     }
-    // Заполнение
-    public static List<KeyValuePair<string, string>> GenerateApplicantsData(out int[] scores1, out int[] scores2)
+    public static void FillFileTask10(string filePath, int count)
     {
         Random rnd = new Random();
-        string[] lastNames = { "Ivanov", "Petrov", "Sidorov", "Kuznetsov", "Smirnov", "Popov", "Vasiliev", "Sokolov", "Mikhailov", "Fedorov" };
-        string[] firstNames = { "Ivan", "Petr", "Anna", "Olga", "Sergey", "Dmitry", "Elena", "Maria", "Alexey", "Natalia" };
-        int count = rnd.Next(5, 16);
-        List<KeyValuePair<string, string>> applicants = new List<KeyValuePair<string, string>>();
-        scores1 = new int[count];
-        scores2 = new int[count];
-        for (int i = 0; i < count; i++)
+        string[] lastNames = { "Ivanov", "Petrov", "Sidorov", "Kuznetsov", "Smirnov",
+                               "Popov", "Vasiliev", "Sokolov", "Mikhailov", "Fedorov" };
+        string[] firstNames = { "Ivan", "Petr", "Anna", "Olga", "Sergey",
+                                "Dmitry", "Elena", "Maria", "Alexey", "Natalia" };
+        using (StreamWriter writer = new StreamWriter(filePath))
         {
-            string lastName = lastNames[rnd.Next(lastNames.Length)];
-            string firstName = firstNames[rnd.Next(firstNames.Length)];
-            string fullName = lastName + " " + firstName;
-            scores1[i] = rnd.Next(0, 101);
-            scores2[i] = rnd.Next(0, 101);
-            applicants.Add(new KeyValuePair<string, string>(lastName, fullName));
+            for (int i = 0; i < count; i++)
+            {
+                string lastName = lastNames[rnd.Next(lastNames.Length)];
+                string firstName = firstNames[rnd.Next(firstNames.Length)];
+                int score1 = rnd.Next(0, 101);
+                int score2 = rnd.Next(0, 101);
+                writer.WriteLine($"{lastName} {firstName} {score1} {score2}");
+            }
         }
-        return applicants;
     }
 }
