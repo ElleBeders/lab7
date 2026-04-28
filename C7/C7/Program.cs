@@ -136,78 +136,87 @@ internal class Program
         Console.WriteLine();
     }
     
-    public static void Six()
+        public static void Six()
     {
-        Console.WriteLine("Задание 6.");
-        List<int> originalList = Collections_Class.FillList();
-        Console.WriteLine("Начальный список:");
+        Console.WriteLine("Zadanie 6.");
+        List<char> originalList = Collections_Class.FillListForTask6();
+        Console.WriteLine("Nachal'nyj spisok:");
         InputOutput.PrintList(originalList);
-        bool k = true;
-        int n = 5;
-        int e = 5;
-        while (k || n == 0)
+        // Ввод символа E
+        bool validInput = false;
+        int attempts = 5;
+        char e = 'a';  
+        while (!validInput && attempts > 0)
         {
-            Console.Write("Введите число от 1 до 10: ");
-            string a = Console.ReadLine();
-            e = InputOutput.ValidateInt(a);
-            if (e != -1)
+            Console.Write("Vvedite odin simvol (a/e/i/o/u ili 1/2/3/4/5): ");
+            string input = Console.ReadLine();
+            if (input.Length == 1)
             {
-                k = false;
+                e = input[0];
+                validInput = true;
             }
             else
             {
-                e = 5;
-                n--;
+                attempts--;
+                if (attempts > 0)
+                {
+                    Console.WriteLine($"Nevernyj vvod. Ostalos popytok: {attempts}");
+                }
+                else
+                {
+                    Console.WriteLine("Popytki zakonchilis. Budet ispolzovan simvol 'a'.");
+                    e = 'a';
+                }
             }
         }
-        Console.WriteLine(e);
-        List<int> newList = Collections_Class.Task6(originalList, e);
-        Console.WriteLine("Ответ:");
+        List<char> newList = Collections_Class.Task6(originalList, e);
+        Console.WriteLine("Otvet:");
         InputOutput.PrintList(newList);
         Console.WriteLine();
     }
     public static void Seven()
     {
         LinkedList<int> originalList = Collections_Class.FillLinkedList();
-        Console.WriteLine("Начальный список:");
+        Console.WriteLine("Nachal'nyj spisok:");
         InputOutput.PrintLinkedList(originalList);
         LinkedList<int> resultList = Collections_Class.Task7(originalList);
-        Console.WriteLine("Ответ:");
+        Console.WriteLine("Otvet:");
         InputOutput.PrintLinkedList(resultList);
         Console.WriteLine();
     }
     public static void Eight()
     {
-        Console.WriteLine("Задание 8.");
+        Console.WriteLine("Zadanie 8.");
         string[] allCountries;
         List<HashSet<string>> tourists;
         HashSet<string> allVisited;
         HashSet<string> anyVisited;
         HashSet<string> noOneVisited;
         Collections_Class.Task8(out allCountries, out tourists, out allVisited, out anyVisited, out noOneVisited);
-        Console.WriteLine("Список всех стран:");
+        Console.WriteLine("Spisok vsekh stran:");
         InputOutput.PrintArray(allCountries);
         Console.WriteLine();
-        Console.WriteLine("Количество туристов: " + tourists.Count);
+        Console.WriteLine("Kolichestvo turistov: " + tourists.Count);
         for (int i = 0; i < tourists.Count; i++)
         {
-            Console.Write("Турист " + (i + 1) + ": ");
+            Console.Write("Turist " + (i + 1) + ": ");
             InputOutput.PrintHashSet(tourists[i]);
         }
         Console.WriteLine();
         Console.WriteLine();
-        Console.WriteLine("Результаты:");
-        Console.Write("Страны, которые посетили ВСЕ туристы: ");
+        Console.WriteLine("Rezul'taty:");
+        Console.Write("Strany, kotorye posetili VSE turisty: ");
         InputOutput.PrintHashSet(allVisited);
-        Console.Write("Страны, которые посетил ХОТЯ БЫ ОДИН турист: ");
+        Console.Write("Strany, kotorye posetil HOTYa BY ODIN turist: ");
         InputOutput.PrintHashSet(anyVisited);
-        Console.Write("Страны, которые не посетил НИКТО: ");
+        Console.Write("Strany, kotorye ne posetil NIKTO: ");
         InputOutput.PrintHashSet(noOneVisited);
         Console.WriteLine();
     }
     public static void Nine(string fileFolder)
     {
-        Console.WriteLine("Задание 9.");
+        Console.WriteLine("Zadanie 9.");
+        Console.WriteLine("Vse: c, f, h, k, p, s, t, x");
         string testFile = Path.Combine(fileFolder, "task9.txt");
         Collections_Class.FillFileTask9(testFile);
         HashSet<char> result = Collections_Class.Task9(testFile);
@@ -225,7 +234,7 @@ internal class Program
                 }
             }
         }
-        Console.Write("Глухие согласные, которые не входят ровно в одно слово: ");
+        Console.Write("Otvet: ");
         for (int i = 0; i < sortedResult.Length; i++)
         {
             Console.Write(sortedResult[i]);
@@ -237,31 +246,16 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine();
     }
-    public static void Ten()
+    public static void Ten(string fileFolder)
     {
-        Console.WriteLine("Задание 10.");
-
-        List<KeyValuePair<string, string>> applicants;
-        int[] scores1;
-        int[] scores2;
-        SortedDictionary<string, string> notAdmitted = Collections_Class.Task10(out applicants, out scores1, out scores2);
-        Console.WriteLine("Список абитуриентов:");
-        for (int i = 0; i < applicants.Count; i++)
+        Console.WriteLine("Zadanie 10.");
+        string testFile = Path.Combine(fileFolder, "task10.txt");
+        Collections_Class.FillFileTask10(testFile, 10);
+        SortedDictionary<string, string> result = Collections_Class.Task10(testFile);
+        Console.WriteLine("Abiturinty, NE dopuschenye k ekzamenu:");
+        foreach (var pair in result)
         {
-            Console.WriteLine(applicants[i].Value + ": " + scores1[i] + ", " + scores2[i]);
-        }
-        Console.WriteLine();
-        Console.WriteLine("Не допущенные к экзаменам (хотя бы один балл < 30):");
-        if (notAdmitted.Count == 0)
-        {
-            Console.WriteLine("Нет таких");
-        }
-        else
-        {
-            foreach (KeyValuePair<string, string> pair in notAdmitted)
-            {
-                Console.WriteLine(pair.Value);
-            }
+            Console.WriteLine(pair.Value);
         }
         Console.WriteLine();
     }
